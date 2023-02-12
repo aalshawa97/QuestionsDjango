@@ -12,11 +12,19 @@
         text-align: center;
         color: #333;
         margin-top: 50px;
+        font-size: 36px;
       }
       .container {
         max-width: 900px;
         margin: 0 auto;
         text-align: center;
+        padding: 50px 0;
+      }
+      p {
+        font-size: 20px;
+        color: #333;
+        margin: 20px 0;
+        line-height: 1.5;
       }
       .btn {
         padding: 10px 20px;
@@ -26,6 +34,11 @@
         border-radius: 5px;
         cursor: pointer;
         margin-top: 20px;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background-color: #0070ba;
       }
     </style>
   </head>
@@ -33,10 +46,8 @@
     <div class="container">
       <h1>Welcome to the Homepage</h1>
       <p>This is a simple example of an HTML homepage with Django.</p>
-              <p5>Django is a web service that deploys websites. Quickly take applications from the concept to finish. Security provided with Django ensures that you are safe to deploy your projects. With Django applications are highly scalable.</p5>
-        <!--<a href="#" class="btn">Learn More</a>-->
-        <button onclick="window.location.href='https://www.djangoproject.com'" style="background-color: blue; color: white; padding: 20px 40px; font-size: 20px;">Django Homepage</button>
-      <!--<button onclick="window.location.href='https://www.djangoproject.com'">Django Homepage</button>-->
+      <p>Django is a web framework that makes it easy to build web applications quickly and with peace of mind. With its built-in security features, you can deploy your projects with confidence. And, Django is highly scalable, so you can take your applications to the next level.</p>
+      <a href="https://www.djangoproject.com" class="btn">Django Homepage</a>
     </div>
   </body>
 </html>
