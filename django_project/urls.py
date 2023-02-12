@@ -1,12 +1,15 @@
-from django.contrib import admin
-from django.urls import path, include  # new
+import os
+import django
 
-from django_project import settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+django.setup()
+from django.contrib import admin
+from django.urls import path, include
+
 from pages import views
-#settings.configure()
+
 urlpatterns = [
     #path('', views.index, name='index'),
-    #path("admin/", admin.site.urls),
-    path("", include("pages.urls")),  # new
+    path("", include("pages.urls")),
     path('admin/', admin.site.urls),
 ]
