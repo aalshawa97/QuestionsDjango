@@ -9,7 +9,7 @@ def homePageView(request):
 
 def aboutPageView(request):
     context = {}
-    return render(request, 'poll/about.html', context)
+    return render(request, 'Templates/about.html', context)
 
 
 def createPageView(request):
