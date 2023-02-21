@@ -7,6 +7,7 @@ django.setup()
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
+#from polls.models import Choice, Question
 
 class Question(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
