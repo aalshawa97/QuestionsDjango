@@ -4,24 +4,21 @@ from django.shortcuts import render
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 def homePageView(request):
-    return render(request, 'home.html')
-
+    context = {}
+    return render(request, 'home.html', context)
 
 def aboutPageView(request):
     context = {}
-    return render(request, 'Templates/about.html', context)
-
+    return render(request, 'about.html', context)
 
 def createPageView(request):
     context = {}
-    return render(request, 'poll/create.html', context)
+    return render(request, 'create.html', context)
 
-
-def votePageView(request):
+def votePageView(request, poll_id):
     context = {}
-    return render(request, 'poll/vote.html', context)
+    return render(request, 'vote.html', context, poll_id)
 
-
-def resultsPageView(request):
+def resultsPageView(request, poll_id):
     context = {}
-    return render(request, 'poll/results.html', context)
+    return render(request, 'results.html', context)
