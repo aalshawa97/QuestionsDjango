@@ -15,7 +15,8 @@ urlpatterns = [
     #Django adminstration
     path('admin/', admin.site.urls),
     path('create/', poll_views.createPageView, name='create'),
-    #path('vote', poll_views.votePageView, name='vote'),
+    #path('vote', poll_views.votePageView('',0), name='vote'),
+    #path('', poll_views.homePageView, name='home')
     #path('', pages.Templates)
     #path('about/', views.about, name='about'),
 ]
