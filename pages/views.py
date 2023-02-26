@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from django_project.forms import CreatePollForm
 from django_project.models import Question
 
 
@@ -17,7 +18,8 @@ def aboutPageView(request):
     return render(request, 'about.html', context)
 
 def createPageView(request):
-    context = {}
+    form = CreatePollForm()
+    context = {'form' : form}
     return render(request, 'create.html', context)
 
 
