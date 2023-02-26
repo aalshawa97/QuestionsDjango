@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "pages.apps.PagesConfig",  # new
     "widget_tweaks",
+    #"poll",
     #"Poll",
 ]
 

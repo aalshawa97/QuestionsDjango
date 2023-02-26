@@ -9,17 +9,29 @@ from django_project.models import Question
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+
 def homePageView(request):
     context = {}
     return render(request, 'home.html', context)
+
 
 def aboutPageView(request):
     context = {}
     return render(request, 'about.html', context)
 
+
 def createPageView(request):
+    if request.method == 'POST':
+        form = CreatePollForm(request.POST)
+        #if form.is_valid():
+             #form.save()
+             #return redirect('home')
+
     form = CreatePollForm()
-    context = {'form' : form}
+    context = {
+        'form': form
+    }
     return render(request, 'create.html', context)
 
 
@@ -38,6 +50,7 @@ def create_question(request):
 def votePageView(request, poll_id):
     context = {}
     return render(request, 'vote.html', context, poll_id)
+
 
 def resultsPageView(request, poll_id):
     context = {}
