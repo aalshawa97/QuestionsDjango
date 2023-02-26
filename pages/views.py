@@ -1,8 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
 from django_project.forms import CreatePollForm
 from django_project.models import Question
 
@@ -24,14 +22,12 @@ def aboutPageView(request):
 def createPageView(request):
     if request.method == 'POST':
         form = CreatePollForm(request.POST)
-        #if form.is_valid():
-             #form.save()
-             #return redirect('home')
+        if form.is_valid():
+            form.save()
+            return redirect('home')
 
     form = CreatePollForm()
-    context = {
-        'form': form
-    }
+    context = {'form': form}
     return render(request, 'create.html', context)
 
 
@@ -49,7 +45,7 @@ def create_question(request):
 
 def votePageView(request, poll_id):
     context = {}
-    return render(request, 'vote.html', context, poll_id)
+    return render(request, 'vote.html', context)
 
 
 def resultsPageView(request, poll_id):
