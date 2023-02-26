@@ -1,9 +1,14 @@
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project.settings')
+django.setup()
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django_project.forms import CreatePollForm
 from django_project.models import Question
-
+from django.shortcuts import get_object_or_404, render
+from django_project.forms import CreatePollForm
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -40,14 +45,17 @@ def create_question(request):
             return redirect('question_detail', question_id=question.id)
         else:
             messages.error(request, 'Question text is required.')
-    return render(request, 'create_question.html')
+    return render(request, 'create.html')
 
 
 def votePageView(request, poll_id):
     context = {}
     return render(request, 'vote.html', context)
 
-
 def resultsPageView(request, poll_id):
-    context = {}
+    question = get_object_or_404(Question, pk=poll_id)
+    choices = question.choice_set.all()
+    total_votes = sum(c.votes for c in choices)
+    context = {'question': question, 'choices': choices, 'total_votes': total_votes}
     return render(request, 'results.html', context)
+

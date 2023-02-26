@@ -1,27 +1,52 @@
-{% extends "poll/base.html" %}
+{% extends "base.html" %}
 
-{% block title %}Results{% endblock %}
+{% block title %}Question{% endblock %}
 
 {% block main %}
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Poll Result</h3>
+                <h3 class="panel-title">Question</h3>
             </div>
 
             <div class="panel-body">
-                <h3>{{ poll.question }}</h3>
+                <form method="post" action="{% url 'polls:vote' question.id %}">
+                    {% csrf_token %}
+                    {% for choice in question.choice_set.all %}
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="choice" value="{{ choice.id }}">
+                                {{ choice.choice_text }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Vote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Results</h3>
+            </div>
+
+            <div class="panel-body">
+                <h3>{{ question.question_text }}</h3>
             </div>
 
             <ul class="list-group">
-                <li class="list-group-item">{{ poll.option_one }} &mdash; <strong>{{ poll.option_one_count }}</strong></li>
-                <li class="list-group-item">{{ poll.option_two }} &mdash; <strong>{{ poll.option_two_count }}</strong></li>
-                <li class="list-group-item">{{ poll.option_three }} &mdash; <strong>{{ poll.option_three_count }}</strong></li>
+                <li class="list-group-item">{{ question.choice_set.all.0.choice_text }} &mdash; <strong>{{ question.choice_set.all.0.votes }}</strong></li>
+                <li class="list-group-item">{{ question.choice_set.all.1.choice_text }} &mdash; <strong>{{ question.choice_set.all.1.votes }}</strong></li>
+                <li class="list-group-item">{{ question.choice_set.all.2.choice_text }} &mdash; <strong>{{ question.choice_set.all.2.votes }}</strong></li>
             </ul>
 
             <div class="panel-footer">
-                Total &mdash; <strong>{{ poll.total }}</strong>
+                Total &mdash; <strong>{{ question.total_votes }}</strong>
             </div>
 
         </div>
