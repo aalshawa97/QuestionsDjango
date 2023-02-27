@@ -1,55 +1,9 @@
-{% extends "base.html" %}
+<h1>{{ question.question }}</h1>
 
-{% block title %}Question{% endblock %}
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
 
-{% block main %}
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Question</h3>
-            </div>
-
-            <div class="panel-body">
-                <form method="post" action="{% url 'polls:vote' question.id %}">
-                    {% csrf_token %}
-                    {% for choice in question.choice_set.all %}
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="choice" value="{{ choice.id }}">
-                                {{ choice.choice_text }}
-                            </label>
-                        </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">Vote</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Results</h3>
-            </div>
-
-            <div class="panel-body">
-                <h3>{{ question.question_text }}</h3>
-            </div>
-
-            <ul class="list-group">
-                <li class="list-group-item">{{ question.choice_set.all.0.choice_text }} &mdash; <strong>{{ question.choice_set.all.0.votes }}</strong></li>
-                <li class="list-group-item">{{ question.choice_set.all.1.choice_text }} &mdash; <strong>{{ question.choice_set.all.1.votes }}</strong></li>
-                <li class="list-group-item">{{ question.choice_set.all.2.choice_text }} &mdash; <strong>{{ question.choice_set.all.2.votes }}</strong></li>
-            </ul>
-
-            <div class="panel-footer">
-                Total &mdash; <strong>{{ question.total_votes }}</strong>
-            </div>
-
-        </div>
-    </div>
-</div>
-{% endblock %}
+<a href="{% url 'vote' question.id %}">Vote again?</a>

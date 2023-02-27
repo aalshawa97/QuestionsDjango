@@ -52,10 +52,12 @@ def votePageView(request, poll_id):
     context = {}
     return render(request, 'vote.html', context)
 
-def resultsPageView(request, poll_id):
-    question = get_object_or_404(Question, pk=poll_id)
-    choices = question.choice_set.all()
-    total_votes = sum(c.votes for c in choices)
-    context = {'question': question, 'choices': choices, 'total_votes': total_votes}
+def resultsPageView(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    context = {'question': question}
     return render(request, 'results.html', context)
+
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'results.html', {'question': question})
 

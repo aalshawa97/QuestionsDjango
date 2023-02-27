@@ -9,6 +9,5 @@ urlpatterns = [
     path("about/", aboutPageView, name='about'),
     path("create/", createPageView, name='create'),
     path("vote<poll_id>/", votePageView, name='vote'),
-    path("results/", resultsPageView, name='results'),
-
+    path('<int:question_id>/results/', resultsPageView, name='results'),
 ]
