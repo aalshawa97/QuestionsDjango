@@ -17,6 +17,6 @@ urlpatterns = [
     path('create/', poll_views.createPageView, name='create'),
     #path('vote', poll_views.votePageView('',0), name='vote'),
     #path('', poll_views.homePageView, name='home')
-    #path('', pages.Templates)
+    #path('', pages.templates)
     #path('about/', views.about, name='about'),
 ]
