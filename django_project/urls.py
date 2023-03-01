@@ -1,6 +1,8 @@
 import os
 import django
 
+from pages.views import createPageView
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
 django.setup()
 from django.contrib import admin
@@ -14,7 +16,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     #Django adminstration
     path('admin/', admin.site.urls),
-    path('create/', poll_views.createPageView, name='create'),
+    path('create/', createPageView, name='create'),
     #path('vote', poll_views.votePageView('',0), name='vote'),
     #path('', poll_views.homePageView, name='home')
     #path('', pages.templates)
